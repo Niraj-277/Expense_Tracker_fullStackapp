@@ -22,6 +22,7 @@ app.use(express.json())
 
 //!4. Mount the Router
 app.use('/api/v1',require('./routes/authRoutes')) 
+app.use('/api/v1',require('./routes/expenseroutes'))
 
 
 
