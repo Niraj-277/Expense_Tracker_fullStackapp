@@ -76,42 +76,34 @@ exports.deleteExpense=async (req,res,next) => {
 //@update a expense
 //@route api/v1/update
 
-exports.updateExpense=async (req,res,next) => {
-    try{
-        let expenseId=req.params.id
-
-        let expense= await Expense.find({
-            _id:expenseId,
-            user:req.user.id
-        })
-
-        if(!expense){
-            return res.status(400).json({
-                success:false,
-                error:"expense not found or not authorised"
-            })
-        }
-        //Update the expense
-        expense=await Expense.findByIdAndUpdate(
-            expenseId,
+exports.updateExpense = async (req, res, next) => {
+    try {
+        let expense = await Expense.findOneAndUpdate(
+            { _id: req.params.id, user: req.user.id }, // Check BOTH ID and User
             req.body,
             {
-                new:true,
-                runValidators:true
+                new: true, // Return the updated version
+                runValidators: true // Ensure data is valid
             }
-        )
+        );
+
+        if (!expense) {
+            return res.status(404).json({
+                success: false,
+                error: "Expense not found or not authorized"
+            });
+        }
 
         res.status(200).json({
-      success: true,
-      message: "Expense updated successfully",
-      expense
-    });
+            success: true,
+            message: "Expense updated successfully",
+            expense
+        });
 
-    }catch(error){
+    } catch (error) {
         res.status(400).json({
-            success:false,
-            error:error.message
-        })
+            success: false,
+            error: error.message
+        });
     }
-    
-}
+};

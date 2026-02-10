@@ -5,29 +5,45 @@ const jwt = require("jsonwebtoken");
 
 // @desc Register controller
 // @route POST api/v1/register
+
+
 exports.register = async (req, res, next) => {
   try {
-    //1. getting the data from the request
+    // 1. Get data
     const { name, email, password } = req.body;
+
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
-    
-    //2. creating the user in the database
+
+    // 2. Create user
     const user = await User.create({
       name,
       email,
       password,
     });
+
+    // --- NEW STEP: GENERATE TOKEN ---
+    // We sign the token immediately using the new user's ID
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    // 3. Send Response (Now with Token)
     res.status(201).json({
       success: true,
-      id: user._id,
-      email: user.email,
-      message: "user registered successfully",
+      token, // <--- Send the token to the frontend
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      },
+      message: "User registered and logged in successfully",
     });
+
   } catch (error) {
     res.status(400).json({
       success: false,
