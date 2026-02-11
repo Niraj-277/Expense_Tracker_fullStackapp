@@ -16,6 +16,7 @@ const expenseSchema= new mongoose.Schema({
         enum:['food','rent','travel','general'],
         default:'general'
     },
+    
     //Relationship with the user
     user:{
         type:mongoose.Schema.ObjectId,

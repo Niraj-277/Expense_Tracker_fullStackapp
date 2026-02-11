@@ -1,11 +1,19 @@
+import { BrowserRouter,Routes,Route } from "react-router-dom"
 import LoginForm from "./pages/LoginForm"
 import RegisterForm from "./pages/RegisterForm"
+import Dashboard from "./pages/Dashboard"
+
 function App() {
  
   return (
     <>
-      {/* <LoginForm/> */}
-      <RegisterForm/>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

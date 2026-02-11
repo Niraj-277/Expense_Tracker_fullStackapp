@@ -7,7 +7,7 @@ function LoginForm(){
     
     const [password,setPassword]=useState('');
     const [email,setEmail]=useState('');
-        // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ function LoginForm(){
             const data=await res.json();
             if(data.success){
                 localStorage.setItem('token',data.token);
-                // navigate('/dashboard')
+                navigate('/dashboard')
                 console.log("token:",data.token)
             }else{
                 alert(data.error)

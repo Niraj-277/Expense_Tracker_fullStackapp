@@ -7,7 +7,7 @@ function RegisterForm(){
     const [password,setPassword]=useState('');
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleRegister =async (e)=>{
         e.preventDefault()
@@ -20,6 +20,7 @@ function RegisterForm(){
             const data = await res.json()
             if(data.success){
                 localStorage.setItem('token',data.token)
+                navigate('/dashboard')
                 console.log("token:",data.token)
             }else{
                 alert(data.error)

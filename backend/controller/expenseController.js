@@ -23,11 +23,11 @@ exports.getExpense=async(req,res,next)=>{
         console.log(req.user.id)
         
         
-        const expense=await Expense.find({user:req.user.id})
+        const data=await Expense.find({user:req.user.id})
         res.status(200).json({
             success:true,
             message:"all the documents fetched",
-            expense
+            data
         })
     }catch(error){
         res.status(400).json({
