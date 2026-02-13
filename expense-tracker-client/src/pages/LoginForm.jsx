@@ -132,6 +132,14 @@ function LoginForm(){
                             Login
                         </button>
                     </form>
+                    <div style={{ marginTop: '18px', textAlign: 'center' }}>
+                        <span style={{ color: '#bdbdbd', fontSize: '1rem' }}>
+                            Not registered?{' '}
+                            <Link to="/" style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600 }}>
+                                Register here
+                            </Link>
+                        </span>
+                    </div>
                 </div>
             </div>
         );

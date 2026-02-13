@@ -156,6 +156,14 @@ function RegisterForm(){
                             Register
                         </button>
                     </form>
+                    <div style={{ marginTop: '18px', textAlign: 'center' }}>
+                        <span style={{ color: '#bdbdbd', fontSize: '1rem' }}>
+                            Already registered?{' '}
+                            <Link to="/login" style={{ color: '#ffc107', textDecoration: 'underline', fontWeight: 600 }}>
+                                Login here
+                            </Link>
+                        </span>
+                    </div>
                 </div>
             </div>
         );

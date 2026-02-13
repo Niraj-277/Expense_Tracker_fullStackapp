@@ -1,0 +1,6 @@
+html, body {
+	padding: 0;
+	margin: 10px ;
+	box-sizing: border-box;
+    background-color: antiquewhite;
+}
